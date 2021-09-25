@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require('utils')
 local theme = {}
 
 -- -----------------------------------------------------------------------------
@@ -6,23 +6,23 @@ local theme = {}
 -- -----------------------------------------------------------------------------
 
 theme.colors = {
-	cyan = "#4bb6d6",
-	green = "#76e635",
-	purple = "#7842f5",
-	red = "#f55742",
+  cyan = '#4bb6d6',
+  green = '#76e635',
+  purple = '#7842f5',
+  red = '#f55742',
 }
 
 function theme.colors.setCyan()
-	utils.setHex(theme.colors.cyan)
+  utils.setHex(theme.colors.cyan)
 end
 function theme.colors.setGreen()
-	utils.setHex(theme.colors.green)
+  utils.setHex(theme.colors.green)
 end
 function theme.colors.setPurple()
-	utils.setHex(theme.colors.purple)
+  utils.setHex(theme.colors.purple)
 end
 function theme.colors.setRed()
-	utils.setHex(theme.colors.red)
+  utils.setHex(theme.colors.red)
 end
 
 return theme

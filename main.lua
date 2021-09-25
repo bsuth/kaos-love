@@ -16,6 +16,6 @@ end
 function love.draw()
   theme.colors.setCyan()
   love.graphics.print('Hello World', 400, 300)
-  
+
   orbs.draw(theme.colors.green, x, y, 10)
 end
