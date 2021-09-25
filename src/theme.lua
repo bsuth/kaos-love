@@ -12,16 +12,16 @@ theme.colors = {
 	red = "#f55742",
 }
 
-theme.colors.setCyan = function()
+function theme.colors.setCyan()
 	utils.setHex(theme.colors.cyan)
 end
-theme.colors.setGreen = function()
+function theme.colors.setGreen()
 	utils.setHex(theme.colors.green)
 end
-theme.colors.setPurple = function()
+function theme.colors.setPurple()
 	utils.setHex(theme.colors.purple)
 end
-theme.colors.setRed = function()
+function theme.colors.setRed()
 	utils.setHex(theme.colors.red)
 end
 
