@@ -1,11 +1,8 @@
-local home = {}
-
-function home:load() end
-
-function home:update(dt) end
+local lifecycle = require('ui.lifecycle')
+local home = lifecycle.create({})
 
 function home:draw()
-  love.graphics.circle('fill', 0, 0, 10)
+  love.graphics.print('KaOs', 400, 300)
 end
 
 return home
