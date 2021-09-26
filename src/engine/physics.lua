@@ -1,18 +1,20 @@
 local physics = {}
 
 -- -----------------------------------------------------------------------------
--- Position
+-- Vector
 -- -----------------------------------------------------------------------------
 
-physics.Position = {
-    __index = Position,
-    new = function(x, y)
-        local position = {}
-        setmetatable(position, Position)
-        position.x = x
-        position.y = y
-        return position
-    end,
-}
+local Vector = {}
+
+function Vector:new(o)
+    local o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    o.x = o.x or 0
+    o.y = o.y or 0
+    return o
+end
+
+physics.Vector = Vector
 
 return physics

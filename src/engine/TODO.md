@@ -1,7 +1,8 @@
-- [ ] Vector class
-    - [ ] Position
-    - [ ] Velocity
-    - [ ] Acceleration
+- [x] Vector class
+    - [ ] ~~Position~~
+    - [ ] ~~Velocity~~
+    - [ ] ~~Acceleration~~
+    - [x] Use vector for position, velocity and acceleration
 
 - [ ] Add vector operations
     - [ ] Addition

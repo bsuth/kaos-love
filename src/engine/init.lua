@@ -3,7 +3,8 @@ local orbs = require('engine.orbs')
 local physics = require('engine.physics')
 
 local engine = {
-  position = physics.Position:new(0, 0)
+  position = physics.Vector:new({x=0, y=0});
+  velocity = physics.Vector:new({x=2, y=0});
 }
 
 function engine:load()
@@ -13,6 +14,8 @@ function engine:load()
 end
 
 function engine:update(dt)
+  self.position.x = self.position.x + self.velocity.x
+  self.position.y = self.position.y + self.velocity.y
 end
 
 function engine:draw()
