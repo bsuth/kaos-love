@@ -10,6 +10,7 @@ theme.colors = {
   green = '#76e635',
   purple = '#7842f5',
   red = '#f55742',
+  white = '#FFFFFF',
 }
 
 function theme.colors.setCyan()

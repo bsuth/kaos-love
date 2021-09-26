@@ -1,26 +1,24 @@
-local orbs = require('engine.orbs')
 local theme = require('theme')
+local orbs = require('engine.orbs')
+local physics = require('engine.physics')
 
 local engine = {
-  x = 0,
-  y = 0,
-  vX = 2,
+  position = physics.Position:new(0, 0)
 }
 
 function engine:load()
-  self.x = love.graphics.getWidth() / 2
-  self.y = love.graphics.getHeight() / 2
-  self.vX = 2
+  self.position.x = love.graphics.getWidth() / 2
+  self.position.y = love.graphics.getHeight() / 2
+  print(self.position.x, self.position.y)
 end
 
 function engine:update(dt)
-  self.x = self.x + 10 * dt
 end
 
 function engine:draw()
   theme.colors.setCyan()
   love.graphics.print('Hello World', 400, 300)
-  orbs.draw(theme.colors.green, self.x, self.y, 10)
-end
+  orbs.draw(theme.colors.green, self.position.x, self.position.y, 10)
+ end
 
 return engine
