@@ -3,16 +3,22 @@ local orbs = require('engine.orbs')
 local physics = require('engine.physics')
 
 local engine = {
-  position = physics.Vector:new({x=0, y=0});
-  velocity = physics.Vector:new({x=2, y=0});
+  width = 0,
+  height = 0,
+  position = physics.Vector:new(),
+  velocity = physics.Vector:new({x=-5, y=0}),
 }
 
 function engine:load()
-  self.position.x = love.graphics.getWidth() / 2
-  self.position.y = love.graphics.getHeight() / 2
+  self.width = love.graphics.getWidth();
+  self.height = love.graphics.getHeight();
+  self.position = physics.Vector:new({ x = self.width / 2, y = self.height / 2 })
 end
 
 function engine:update(dt)
+  if self.position.x < 0 or self.width < self.position.x then
+    self.velocity = -self.velocity
+  end
   self.position = self.position + self.velocity
 end
 
