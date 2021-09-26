@@ -3,7 +3,7 @@ local game = require('ui.pages.game')
 
 local router = {
   page = home,
-  path = '/',
+  path = '/game',
   routes = {
     ['/'] = home,
     ['/game'] = game,
