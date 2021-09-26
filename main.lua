@@ -1,7 +1,7 @@
 package.path = package.path .. ';./src/?.lua;./src/?/init.lua'
 local theme = require('theme')
 local utils = require('utils')
-local orbs = require('orbs')
+local orbs = require('engine/orbs')
 
 function love.load()
   x = love.graphics.getWidth() / 2
