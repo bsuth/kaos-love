@@ -1,13 +1,9 @@
+local assetLoader = require('ui.assetLoader')
 local router = require('ui.router')
-
-local ui = {
-  font = nil,
-}
+local ui = {}
 
 function ui:load()
-  love.graphics.setFont(
-    love.graphics.newFont('assets/fonts/FugazOne-Regular.ttf')
-  )
+  assetLoader:setFont('FugazOne-Regular.ttf', 24)
   router:load()
 end
 
