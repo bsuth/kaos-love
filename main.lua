@@ -1,5 +1,4 @@
 package.path = package.path .. ';./src/?.lua;./src/?/init.lua'
-local engine = require('engine')
 local ui = require('ui')
 
 function love.load()
