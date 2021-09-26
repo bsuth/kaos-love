@@ -1,4 +1,4 @@
-package.path = package.path .. ';./src/?.lua'
+package.path = package.path .. ';./src/?.lua;./src/?/init.lua'
 local theme = require('theme')
 local utils = require('utils')
 local orbs = require('orbs')
