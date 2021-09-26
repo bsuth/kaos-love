@@ -15,6 +15,21 @@ function Vector:new(o)
     return o
 end
 
+function Vector.__add(a, b)
+    local res = Vector:new()
+    res.x = a.x + b.x
+    res.y = a.y + b.y
+    return res
+end
+
+function Vector.__sub(a, b)
+    local res = Vector:new()
+    res.x = a.x - b.x
+    res.y = a.y - b.y
+    return res
+end
+
+
 physics.Vector = Vector
 
 return physics

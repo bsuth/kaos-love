@@ -10,12 +10,10 @@ local engine = {
 function engine:load()
   self.position.x = love.graphics.getWidth() / 2
   self.position.y = love.graphics.getHeight() / 2
-  print(self.position.x, self.position.y)
 end
 
 function engine:update(dt)
-  self.position.x = self.position.x + self.velocity.x
-  self.position.y = self.position.y + self.velocity.y
+  self.position = self.position + self.velocity
 end
 
 function engine:draw()
