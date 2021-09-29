@@ -5,11 +5,11 @@ local physics = {}
 -- -----------------------------------------------------------------------------
 
 local Vector = {}
+Vector.__index = Vector
 
 function Vector:new(o)
     o = o or {}
     setmetatable(o, self)
-    self.__index = self
     o.x = o.x or 0
     o.y = o.y or 0
     return o
