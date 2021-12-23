@@ -1,0 +1,14 @@
+local lifecycle = {}
+
+function lifecycle.create(t = {}) {
+  return setmetatable(t, {
+    __index = {
+      load = () -> nil,
+      update = () -> nil,
+      draw = () -> nil,
+      unload = () -> nil,
+    },
+  })
+}
+
+return lifecycle

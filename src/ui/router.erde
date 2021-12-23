@@ -10,19 +10,19 @@ local router = {
   },
 }
 
-function router:load() end
+function router:load() {}
 
-function router:update(dt)
-  if self.routes[self.path] ~= self.page then
+function router:update(dt) {
+  if self.routes[self.path] ~= self.page {
     self.page = self.routes[self.path]
     self.page:load()
-  end
+  }
 
   self.page:update(dt)
-end
+}
 
-function router:draw()
+function router:draw() {
   self.page:draw()
-end
+}
 
 return router

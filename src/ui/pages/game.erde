@@ -1,17 +1,17 @@
 local engine = require('engine')
 local lifecycle = require('ui.lifecycle')
-local game = lifecycle.create({})
+local game = lifecycle.create()
 
-function game:load()
+function game:load() {
   engine:load()
-end
+}
 
-function game:update(dt)
+function game:update(dt) {
   engine:update(dt)
-end
+}
 
-function game:draw()
+function game:draw() {
   engine:draw()
-end
+}
 
 return game

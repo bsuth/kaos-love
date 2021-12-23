@@ -13,17 +13,20 @@ theme.colors = {
   white = '#FFFFFF',
 }
 
-function theme.colors.setCyan()
+function theme.colors.setCyan() {
   utils.setHex(theme.colors.cyan)
-end
-function theme.colors.setGreen()
+}
+
+function theme.colors.setGreen() {
   utils.setHex(theme.colors.green)
-end
-function theme.colors.setPurple()
+}
+
+function theme.colors.setPurple() {
   utils.setHex(theme.colors.purple)
-end
-function theme.colors.setRed()
+}
+
+function theme.colors.setRed() {
   utils.setHex(theme.colors.red)
-end
+}
 
 return theme

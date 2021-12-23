@@ -1,0 +1,18 @@
+local assetLoader = {
+  fonts = {},
+}
+
+function assetLoader.getFontId(fontFile, size) {
+  return fontFile .. ':' .. tostring(size)
+}
+
+function assetLoader:getFont(fontFile, size) {
+  return self.fonts[self.getFontId(fontFile, size)]
+    | love.graphics.newFont('assets/fonts/' .. fontFile, 24)
+}
+
+function assetLoader:setFont(fontFile, size) {
+  love.graphics.setFont(self:getFont(fontFile, size))
+}
+
+return assetLoader

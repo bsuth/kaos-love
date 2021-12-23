@@ -7,16 +7,5 @@ package.path = table.concat({
   package.path,
 }, ';')
 
-local ui = require('ui')
-
-function love.load()
-  ui:load()
-end
-
-function love.update(dt)
-  ui:update(dt)
-end
-
-function love.draw()
-  ui:draw()
-end
+require('erde.loader')
+require('main')

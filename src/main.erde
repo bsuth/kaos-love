@@ -1,0 +1,13 @@
+local ui = require('ui')
+
+function love.load() {
+  ui:load()
+}
+
+function love.update(dt) {
+  ui:update(dt)
+}
+
+function love.draw() {
+  ui:draw()
+}
