@@ -13,13 +13,13 @@ local engine = {
 }
 
 function engine:load() {
-  self.width = love.graphics.getWidth();
-  self.height = love.graphics.getHeight();
+  self.width = love.graphics.getWidth()
+  self.height = love.graphics.getHeight()
   self.orb.p = physics.Vector:new({ x = self.width / 2, y = self.height / 2 })
 }
 
 function engine:update(dt) {
-  if self.orb.p.x < 0 or self.width < self.orb.p.x {
+  if self.orb.p.x < 0 | self.width < self.orb.p.x {
     self.orb.v = -self.orb.v
   }
 
