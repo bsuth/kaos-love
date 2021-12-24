@@ -1,3 +1,4 @@
+local { eventListeners } = require('events')
 local ui = require('ui')
 
 function love.load() {
@@ -10,4 +11,12 @@ function love.update(dt) {
 
 function love.draw() {
   ui:draw()
+}
+
+for event, listeners in pairs(eventListeners) {
+  love[event] = (...) -> {
+    for id, listener in pairs(listeners) {
+      listener(...)
+    }
+  }
 }
