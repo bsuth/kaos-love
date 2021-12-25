@@ -1,0 +1,40 @@
+-- Recursively assign default table values.
+local function assignDefaults(defaults, t) {
+  for key, value in pairs(defaults) {
+    if type(value) == 'table' {
+      t[key] ??= {}
+      assignDefaults(value, t[key])
+    } else {
+      t[key] ??= value
+    }
+  }
+}
+
+-- Create a new base class. This provides necessary boilerplate to ensure the
+-- class is composable.
+module function Base(defaults = {}) {
+  local Class = {}
+  Class.__index = Class
+
+  Class.new = (instance = {}) -> {
+    assignDefaults(defaults, instance)
+    return setmetatable(instance, Class)
+  }
+
+  return Class
+}
+
+-- Create a new class my composing multiple parent classes. Precedence is
+-- determined by the order they are provided in, i.e. parent classes provided
+-- earlier will take precedence over those provided later.
+module function compose(...Parents) {
+  return setmetatable(Base(), {
+    __index = (t, key) -> {
+      for i, Parent in pairs(Parents) {
+        if Parent[key] ~= nil {
+          return Parent[key]
+        }
+      }
+    },
+  })
+}

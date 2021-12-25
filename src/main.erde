@@ -1,5 +1,6 @@
 local { eventListeners } = require('events')
 local ui = require('ui')
+require('classes.Rect')
 
 function love.load() {
   ui:load()
