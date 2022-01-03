@@ -9,15 +9,8 @@ A revamped version of [kaos-web](https://github.com/bsuth/kaos-web) written in
 
 ## Luarocks
 
-Since LOVE uses LuaJIT (i.e. Lua 5.1) and we need all dependencies local for 
-packaging the game, all luarocks commands require the following flags:
+Luarocks dependencies are installed to a local tree.
 
 ```bash
-luarocks --lua-version 5.1 --tree luarocks_modules
-```
-
-To install all dependencies, use:
-
-```bash
-luarocks --lua-version 5.1 --tree luarocks_modules install --only-deps kaos-0.1-1.rockspec
+luarocks --lua-version 5.1 --tree ./luarocks_modules install --only-deps ./kaos-0.1-1.rockspec
 ```
