@@ -1,25 +1,12 @@
--- Recursively assign default table values.
-local function assignDefaults(defaults, t) {
-  for key, value in pairs(defaults) {
-    if type(value) == 'table' {
-      t[key] ??= {}
-      assignDefaults(value, t[key])
-    } else {
-      t[key] ??= value
-    }
-  }
-}
-
 -- Create a new base class. This provides necessary boilerplate to ensure the
 -- class is composable.
-module function Base(defaults = {}) {
+module function Base(constructor) {
   local Class = {}
   Class.__index = Class
 
-  Class.new = (instance = {}) -> {
-    assignDefaults(defaults, instance)
-    return setmetatable(instance, Class)
-  }
+  Class.new = type(constructor) == 'function'
+    ? (...) -> setmetatable(constructor(...), Class)
+    : () -> setmetatable({}, Class)
 
   return Class
 }
@@ -28,6 +15,7 @@ module function Base(defaults = {}) {
 -- determined by the order they are provided in, i.e. parent classes provided
 -- earlier will take precedence over those provided later.
 module function compose(...Parents) {
+  -- TODO: combined constructor?
   return setmetatable(Base(), {
     __index = (t, key) -> {
       for i, Parent in pairs(Parents) {

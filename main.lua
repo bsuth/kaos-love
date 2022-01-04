@@ -21,10 +21,8 @@ local function addCPackagePath(dir)
 end
 
 -- Local game files
+addPackagePath(root)
 addPackagePath(root .. '/src')
-
--- 3rd party libraries
-addPackagePath(root .. '/3rdparty')
 
 -- Luarocks dependencies are assumed to be installed to a local tree under
 -- 'luarocks_modules' (ex. `luarocks --lua-version 5.1 --tree luarocks_modules`)

@@ -1,5 +1,5 @@
-local { Base } = require('classes.core')
+local { Base } = require('lib.compose')
 
-local Rect = Base({ x = 0, y = 0, width = 0, height = 0 })
+local Rect = Base(() -> ({ x = 0, y = 0, width = 0, height = 0 }))
 
 return Rect

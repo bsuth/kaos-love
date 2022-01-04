@@ -1,4 +1,6 @@
-local { eventListeners } = require('events')
+local lurker = require('extern.lurker')
+require('events')
+
 local ui = require('ui')
 require('classes.Rect')
 
@@ -7,17 +9,10 @@ function love.load() {
 }
 
 function love.update(dt) {
+  lurker.update()
   ui:update(dt)
 }
 
 function love.draw() {
   ui:draw()
-}
-
-for event, listeners in pairs(eventListeners) {
-  love[event] = (...) -> {
-    for id, listener in pairs(listeners) {
-      listener(...)
-    }
-  }
 }

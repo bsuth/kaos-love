@@ -1,29 +1,28 @@
-local eventHandlerIdCounter = 0
+local { addEventListener }  = require('lib.events')
 
-module eventListeners = {
-  keypressed = {},
-  keyreleased = {},
-  mousemoved = {},
-  mousepressed = {},
-  mousereleased = {},
-  wheelmoved = {},
-  gamepadaxis = {},
-  gamepadpressed = {},
-  gamepadreleased = {},
-  joystickadded = {},
-  joystickaxis = {},
-  joystickhat = {},
-  joystickpressed = {},
-  joystickreleased = {},
-  joystickremoved = {},
-}
+addEventListener('keypressed', (key, scanCode, isRepeat) -> {
+  if ~isRepeat {
+    if key == 'up' {
+      invokeAction('upStart')
+    } elseif key == 'left' {
+      invokeAction('leftStart')
+    } elseif key == 'down' {
+      invokeAction('downStart')
+    } elseif key == 'right' {
+      invokeAction('rightStart')
+    }
+  }
+})
 
-module function addEventListener(event, callback) {
-  eventHandlerIdCounter += 1
-  eventListeners[event][eventHandlerIdCounter] = callback
-  return eventHandlerIdCounter
-}
+addEventListener('keyreleased', (key, scanCode) -> {
+  if key == 'up' {
+    invokeAction('upEnd')
+  } elseif key == 'left' {
+    invokeAction('leftEnd')
+  } elseif key == 'down' {
+    invokeAction('downEnd')
+  } elseif key == 'right' {
+    invokeAction('rightEnd')
+  }
+})
 
-module function removeEventListener(event, eventHandlerId) {
-  eventListeners[event][eventHandlerId] = nil
-}

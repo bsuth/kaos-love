@@ -1,3 +1,11 @@
+global UI_STATE = {
+  currentState = 'HOME',
+}
+
+global UI_STATES = {
+  HOME = 'HOME',
+}
+
 local assetLoader = require('ui.assetLoader')
 local router = require('ui.router')
 local ui = {}

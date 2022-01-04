@@ -1,0 +1,11 @@
+{
+  "keyboard": {
+    "UP": "w",
+    "LEFT": "a",
+    "DOWN": "s",
+    "RIGHT": "d",
+    "TOGGLE_COLOR": "space",
+    "SPIN": "k",
+    "SPIN_CC": "j"
+  }
+}
