@@ -1,0 +1,27 @@
+-- Create a new Component, optionally composed of multiple parent components.
+-- Parent precedence is determined by the order they are provided in, i.e.
+-- parents provided earlier will take precedence over those provided later.
+module function Component(...Parents) {
+  local component = {}
+
+  setmetatable(component, {
+    __index = (t, key) -> {
+      for i, Parent in pairs(Parents) {
+        if Parent[key] ~= nil {
+          return Parent[key]
+        }
+      }
+    },
+
+    __call = (instance = {}) -> {
+      for i, Parent in pairs(Parents) {
+        Parent(instance)
+      }
+
+      component.__constructor?(instance)
+      return instance
+    },
+  })
+
+  return component
+}

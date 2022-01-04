@@ -1,28 +1,30 @@
-local { addEventListener }  = require('lib.events')
+local { addEventListener, invokeEvent }  = require('lib.events')
 
 addEventListener('keypressed', (key, scanCode, isRepeat) -> {
   if ~isRepeat {
     if key == 'up' {
-      invokeAction('upStart')
+      invokeEvent('upStart')
     } elseif key == 'left' {
-      invokeAction('leftStart')
+      invokeEvent('leftStart')
     } elseif key == 'down' {
-      invokeAction('downStart')
+      invokeEvent('downStart')
     } elseif key == 'right' {
-      invokeAction('rightStart')
+      invokeEvent('rightStart')
     }
   }
 })
 
 addEventListener('keyreleased', (key, scanCode) -> {
   if key == 'up' {
-    invokeAction('upEnd')
+    invokeEvent('upEnd')
   } elseif key == 'left' {
-    invokeAction('leftEnd')
+    invokeEvent('leftEnd')
   } elseif key == 'down' {
-    invokeAction('downEnd')
+    invokeEvent('downEnd')
   } elseif key == 'right' {
-    invokeAction('rightEnd')
+    invokeEvent('rightEnd')
   }
 })
 
+-- TODO: Example, remove later
+addEventListener('upStart', () -> print('up start'))

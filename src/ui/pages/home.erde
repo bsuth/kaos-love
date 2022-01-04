@@ -6,7 +6,7 @@ function home:draw() {
   local y = 300
   love.graphics.print('Play', x, y)
   love.graphics.print('Scores', x, y + 40)
-  love.graphics.print('Settings', x, y + 80)
+  love.graphics.print('Settings', x, y + 120)
 }
 
 return home

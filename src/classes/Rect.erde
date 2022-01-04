@@ -1,5 +1,12 @@
-local { Base } = require('lib.compose')
+local { Component } = require('lib.components')
 
-local Rect = Base(() -> ({ x = 0, y = 0, width = 0, height = 0 }))
+local Rect = Component()
+
+function Rect.__constructor(t) {
+  t.x ??= 0
+  t.y ??= 0
+  t.width ??= 0
+  t.height ??= 0
+}
 
 return Rect
