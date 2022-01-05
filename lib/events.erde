@@ -1,7 +1,6 @@
 local { Component } = require('lib.components')
 
 local eventListenerIdCounter = 0
-local a,b
 local eventListeners = {
   keyPressed = {},
   keyReleased = {},
@@ -30,7 +29,6 @@ local eventListeners = {
 }
 
 module function addEventListener(event, callback) {
-  a = eventListeners
   eventListeners[event] ??= {}
   eventListenerIdCounter += 1
   eventListeners[event][eventListenerIdCounter] = callback
