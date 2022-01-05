@@ -31,4 +31,4 @@ addPackagePath(root .. '/luarocks_modules/share/lua/5.1')
 addCPackagePath(root .. '/luarocks_modules/lib/lua/5.1')
 
 require('erde.loader')
-require('main')
+require('src')
