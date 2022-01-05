@@ -4,24 +4,45 @@
 module function Component(...Parents) {
   local component = {}
 
-  setmetatable(component, {
-    __index = (t, key) -> {
-      for i, Parent in pairs(Parents) {
-        if Parent[key] ~= nil {
-          return Parent[key]
-        }
-      }
-    },
-
-    __call = (instance = {}) -> {
-      for i, Parent in pairs(Parents) {
+  -- Check #Parents to optimize most common use cases
+  if #Parents == 0 {
+    setmetatable(component, {
+      __call = (instance = {}) -> {
+        component.__constructor?(instance)
+        return instance
+      },
+    })
+  } elseif #Parents == 1 {
+    local [ Parent ] = Parents
+    setmetatable(component, {
+      __index = (t, key) -> Parent[key],
+      __call = (instance = {}) -> {
         Parent(instance)
-      }
+        component.__constructor?(instance)
+        return instance
+      },
+    })
+  } else {
+    setmetatable(component, {
+      __index = (t, key) -> {
+        for i, Parent in pairs(Parents) {
+          if Parent[key] ~= nil {
+            return Parent[key]
+          }
+        }
+      },
 
-      component.__constructor?(instance)
-      return instance
-    },
-  })
+      __call = (instance = {}) -> {
+        for i, Parent in pairs(Parents) {
+          Parent(instance)
+        }
+
+        component.__constructor?(instance)
+        return instance
+      },
+    })
+  }
+
 
   return component
 }

@@ -1,27 +1,24 @@
 local { Component } = require('lib.components')
 
 local eventListenerIdCounter = 0
-
-local nativeEventListeners = {
-  keypressed = {},
-  keyreleased = {},
-  mousemoved = {},
-  mousepressed = {},
-  mousereleased = {},
-  wheelmoved = {},
-  gamepadaxis = {},
-  gamepadpressed = {},
-  gamepadreleased = {},
-  joystickadded = {},
-  joystickaxis = {},
-  joystickhat = {},
-  joystickpressed = {},
-  joystickreleased = {},
-  joystickremoved = {},
-}
-
+local a,b
 local eventListeners = {
-  ...nativeEventListeners,
+  keyPressed = {},
+  keyReleased = {},
+  mouseMoved = {},
+  mousePressed = {},
+  mouseReleased = {},
+  wheelMoved = {},
+  gamepadAxis = {},
+  gamepadPressed = {},
+  gamepadReleased = {},
+  joystickAdded = {},
+  joystickAxis = {},
+  joystickHat = {},
+  joystickPressed = {},
+  joystickReleased = {},
+  joystickRemoved = {},
+
   upStart = {},
   upEnd= {},
   rightStart = {},
@@ -33,6 +30,7 @@ local eventListeners = {
 }
 
 module function addEventListener(event, callback) {
+  a = eventListeners
   eventListeners[event] ??= {}
   eventListenerIdCounter += 1
   eventListeners[event][eventListenerIdCounter] = callback
@@ -43,18 +41,10 @@ module function removeEventListener(event, eventListenerId) {
   eventListeners[event][eventListenerId] = nil
 }
 
-module function invokeEvent(event, ...) {
+module function emitEvent(event, ...) {
   for id, eventListener in pairs(eventListeners[event]) {
     eventListener(...)
   }
-}
-
--- -----------------------------------------------------------------------------
--- LOVE Lifecycles
--- -----------------------------------------------------------------------------
-
-for nativeEvent, listeners in pairs(nativeEventListeners) {
-  love[nativeEvent] = (...) -> invokeEvent(nativeEvent, ...)
 }
 
 -- -----------------------------------------------------------------------------
@@ -63,4 +53,24 @@ for nativeEvent, listeners in pairs(nativeEventListeners) {
 
 module EventEmitter = Component()
 
-function EventEmitter:on(event, callback) { }
+function EventEmitter.__constructor(t) {
+  t.eventListenerIdCounter = 0
+  t.eventListeners = {}
+}
+
+function EventEmitter:addEventListener(event, callback) {
+  self.eventListeners[event] ??= {}
+  self.eventListenerIdCounter += 1
+  self.eventListeners[event][self.eventListenerIdCounter] = callback
+  return self.eventListenerIdCounter
+}
+
+function EventEmitter:removeEventListener(event, eventListenerId) {
+  self.eventListeners[event][eventListenerId] = nil
+}
+
+function EventEmitter:emitEvent(event, ...) {
+  for id, eventListener in pairs(self.eventListeners[event]) {
+    eventListener(...)
+  }
+}

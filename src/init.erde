@@ -1,0 +1,83 @@
+local lurker = require('extern.lurker')
+local { emitEvent } = require('lib.events')
+require('events')
+
+local ui = require('ui')
+require('classes.Rect')
+
+function love.load() {
+  ui:load()
+}
+
+function love.update(dt) {
+  lurker.update()
+  ui:update(dt)
+}
+
+function love.draw() {
+  ui:draw()
+}
+
+-- -----------------------------------------------------------------------------
+-- Events
+-- -----------------------------------------------------------------------------
+
+function love.keypressed(...) {
+  emitEvent('keyPressed', ...)
+}
+
+function love.keyreleased(...) {
+  emitEvent('keyReleased', ...)
+}
+
+function love.mousemoved(...) {
+  emitEvent('mouseMoved', ...)
+}
+
+function love.mousepressed(...) {
+  emitEvent('mousePressed', ...)
+}
+
+function love.mousereleased(...) {
+  emitEvent('mouseReleased', ...)
+}
+
+function love.wheelmoved(...) {
+  emitEvent('wheelMoved', ...)
+}
+
+function love.gamepadaxis(...) {
+  emitEvent('gamepadAxis', ...)
+}
+
+function love.gamepadpressed(...) {
+  emitEvent('gamepadPressed', ...)
+}
+
+function love.gamepadreleased(...) {
+  emitEvent('gamepadReleased', ...)
+}
+
+function love.joystickadded(...) {
+  emitEvent('joystickAdded', ...)
+}
+
+function love.joystickaxis(...) {
+  emitEvent('joystickAxis', ...)
+}
+
+function love.joystickhat(...) {
+  emitEvent('joystickHat', ...)
+}
+
+function love.joystickpressed(...) {
+  emitEvent('joystickPressed', ...)
+}
+
+function love.joystickreleased(...) {
+  emitEvent('joystickReleased', ...)
+}
+
+function love.joystickremoved(...) {
+  emitEvent('joystickRemoved', ...)
+}
