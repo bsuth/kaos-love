@@ -1,6 +1,7 @@
-local { Component } = require('lib.components')
+local Component = require('lib.Component')
 
 local eventListenerIdCounter = 0
+
 local eventListeners = {
   keyPressed = {},
   keyReleased = {},

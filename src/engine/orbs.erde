@@ -1,6 +1,6 @@
 local theme = require('theme')
 local utils = require('utils')
-local physics = require('engine.physics')
+local Vector = require('lib.math.Vector')
 
 local orbs = {}
 
@@ -13,8 +13,8 @@ Orb.__index = Orb
 
 function Orb:new(o = {}) {
   setmetatable(o, self)
-  o.p = o.p | physics.Vector:new() 
-  o.v = o.v | phsics.Vector:new()
+  o.p = o.p | Vector() 
+  o.v = o.v | Vector()
   o.r = o.r | 10
   o.color = o.color | theme.colors.white
   return o

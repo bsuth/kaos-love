@@ -1,4 +1,4 @@
-local { Component } = require('lib.components')
+local Component = require('lib.Component')
 
 local Rect = Component()
 

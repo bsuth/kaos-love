@@ -1,3 +1,0 @@
-local { EventEmitter } = require('lib.events')
-
-function EventEmitter:on(event, callback) { }

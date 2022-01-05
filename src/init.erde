@@ -3,7 +3,7 @@ local { emitEvent } = require('lib.events')
 require('events')
 
 local ui = require('ui')
-require('classes.Rect')
+require('lib.Hitbox')
 
 function love.load() {
   ui:load()

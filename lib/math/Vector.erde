@@ -1,21 +1,14 @@
-local physics = {}
+local Component = require('lib.Component')
+
+local Vector = Component()
 
 -- -----------------------------------------------------------------------------
--- Vector
+-- Metamethods
 -- -----------------------------------------------------------------------------
 
-local Vector = {}
-Vector.__index = Vector
-
-function Vector:new(o = {}) {
-  setmetatable(o, self)
-  o.x = o.x | 0
-  o.y = o.y | 0
-  return o
-}
-
-function Vector:magnitude() {
-  return self * self
+function Vector.__constructor(t) {
+  t.x ??= 0
+  t.y ??= 0
 }
 
 function Vector.__add(a, b) {
@@ -60,6 +53,16 @@ function Vector:__unm() {
   })
 }
 
-physics.Vector = Vector
+-- -----------------------------------------------------------------------------
+-- Methods
+-- -----------------------------------------------------------------------------
 
-return physics
+function Vector:magnitude() {
+  return self * self
+}
+
+-- -----------------------------------------------------------------------------
+-- Return
+-- -----------------------------------------------------------------------------
+
+return Vector
