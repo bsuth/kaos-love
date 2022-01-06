@@ -3,20 +3,22 @@
 -- parents provided earlier will take precedence over those provided later.
 return (...Parents) -> {
   local component = {}
-  setmetatable(component, component)
+  local componentMT = {}
 
   -- Check #Parents to optimize most common use cases
   if #Parents == 0 {
-    component.__call = (instance = {}) -> {
+    componentMT.__call = (t, instance = {}) -> {
       component.__constructor?(instance)
+      setmetatable(instance, component)
       return instance
     }
   } elseif #Parents == 1 {
     local [ Parent ] = Parents
     component.__index = (t, key) -> Parent[key]
-    component.__call = (instance = {}) -> {
+    componentMT.__call = (t, instance = {}) -> {
         Parent(instance)
         component.__constructor?(instance)
+        setmetatable(instance, component)
         return instance
     }
   } else {
@@ -27,15 +29,17 @@ return (...Parents) -> {
         }
       }
     }
-    component.__call = (instance = {}) -> {
+    componentMT.__call = (t, instance = {}) -> {
       for i, Parent in pairs(Parents) {
         Parent(instance)
       }
 
       component.__constructor?(instance)
+      setmetatable(instance, component)
       return instance
     }
   }
 
+  setmetatable(component, componentMT)
   return component
 }

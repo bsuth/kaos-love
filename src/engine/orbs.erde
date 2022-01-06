@@ -1,5 +1,6 @@
 local theme = require('theme')
 local utils = require('utils')
+local Component = require('lib.Component')
 local Vector = require('lib.math.Vector')
 
 local orbs = {}
@@ -21,7 +22,7 @@ function Orb:new(o = {}) {
 }
 
 function Orb:update() {
-  self.p = self.p + self.v
+  self.p += self.v
 }
 
 function Orb:draw() {

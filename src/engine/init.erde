@@ -3,8 +3,6 @@ local orbs = require('engine.orbs')
 local Vector = require('lib.math.Vector')
 
 local engine = {
-  width = 0,
-  height = 0,
   orb = orbs.Orb:new({
     p = Vector(),
     v = Vector({ x = -5, y = 0 }),
@@ -13,13 +11,11 @@ local engine = {
 }
 
 function engine:load() {
-  self.width = love.graphics.getWidth()
-  self.height = love.graphics.getHeight()
   self.orb.p = Vector({ x = self.width / 2, y = self.height / 2 })
 }
 
 function engine:update(dt) {
-  if self.orb.p.x < 0 | self.width < self.orb.p.x {
+  if self.orb.p.x < 0 | love.graphics.getWidth() < self.orb.p.x {
     self.orb.v = -self.orb.v
   }
 

@@ -12,17 +12,11 @@ function Vector.__constructor(t) {
 }
 
 function Vector.__add(a, b) {
-  return Vector:new({
-      x = a.x + b.x,
-      y = a.y + b.y
-  })
+  return Vector({ x = a.x + b.x, y = a.y + b.y })
 }
 
 function Vector.__sub(a, b) {
-  return Vector:new({
-      x = a.x - b.x,
-      y = a.y - b.y
-  })
+  return Vector({ x = a.x - b.x, y = a.y - b.y })
 }
 
 --[[--
@@ -35,10 +29,7 @@ function Vector.__mul(a, b) {
   }
 
   if type(a) == "number" & getmetatable(b) == Vector {
-    return Vector:new({
-      x = a * b.x,
-      y = a * b.y,
-    })
+    return Vector({ x = a * b.x, y = a * b.y })
   } elseif getmetatable(a) == Vector & getmetatable(b) == Vector {
     return a.x * b.x + a.y * b.y
   } else {
@@ -47,14 +38,16 @@ function Vector.__mul(a, b) {
 }
 
 function Vector:__unm() {
-  return Vector:new({
-      x = -self.x,
-      y = -self.y,
-  })
+  return Vector({ x = -self.x, y = -self.y })
 }
 
 -- -----------------------------------------------------------------------------
 -- Methods
+--
+-- TODO: add mutating methods for performance?
+--    local p1 = Vector({ x = 1, y = 2 })
+--    p1:add(Vector({ x = 3, y = 4 }))
+--    print(p1.x, p1.y) -- (x = 4, y = 6)
 -- -----------------------------------------------------------------------------
 
 function Vector:magnitude() {
