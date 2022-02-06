@@ -5,17 +5,17 @@ local Vector = require('lib.math.Vector')
 local engine = {
   orb = orbs.Orb:new({
     p = Vector(),
-    v = Vector({ x = -5, y = 0 }),
+    v = Vector({ x = 5, y = 5 }),
     color = theme.colors.cyan,
   })
 }
 
 function engine:load() {
-  self.orb.p = Vector({ x = self.width / 2, y = self.height / 2 })
+  self.orb.p = Vector()
 }
 
 function engine:update(dt) {
-  if self.orb.p.x < 0 | love.graphics.getWidth() < self.orb.p.x {
+  if self.orb.p.x < 0 | love.graphics.getWidth() < self.orb.p.x | love.graphics.getHeight() < self.orb.p.y {
     self.orb.v = -self.orb.v
   }
 

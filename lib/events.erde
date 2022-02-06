@@ -52,9 +52,9 @@ module function emitEvent(event, ...) {
 
 module EventEmitter = Component()
 
-function EventEmitter.__constructor(t) {
-  t.eventListenerIdCounter = 0
-  t.eventListeners = {}
+function EventEmitter:init() {
+  self.eventListenerIdCounter = 0
+  self.eventListeners = {}
 }
 
 function EventEmitter:addEventListener(event, callback) {

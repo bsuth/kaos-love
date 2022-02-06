@@ -2,11 +2,20 @@ local Component = require('lib.Component')
 
 local Rect = Component()
 
-function Rect.__constructor(t) {
-  t.x ??= 0
-  t.y ??= 0
-  t.width ??= 0
-  t.height ??= 0
+function Rect:init() {
+  self.x ??= 0
+  self.y ??= 0
+  self.width ??= 0
+  self.height ??= 0
+}
+
+function Rect:contains(x, y) {
+  return (
+    self.x < x & 
+    x < self.x + self.width &
+    self.y < y &
+    y < self.y + self.height
+  )
 }
 
 return Rect

@@ -4,7 +4,7 @@ local Rect = require('lib.shapes.Rect')
 
 local Hitbox = Component(EventEmitter, Rect)
 
-function Hitbox.__constructor(t) {
+function Hitbox:init() {
 }
 
 -- Must be called explicitly

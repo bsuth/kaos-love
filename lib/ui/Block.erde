@@ -1,0 +1,17 @@
+local Component = require('lib.Component')
+local Rect = require('lib.shapes.Rect')
+
+local Block = Component(Rect)
+
+function Block:init() {
+  self.contentRect = Rect()
+}
+
+function Block:render() {
+  if self.borderWidth > 0 {
+    love.graphics.setLineWidth(self.borderWidth)
+    love.graphics.rectangle('line', self.x, self.y, self.width, self.height)
+  }
+}
+
+return Rect
