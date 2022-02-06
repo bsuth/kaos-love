@@ -1,26 +1,31 @@
-global UI_STATE = {
-  currentState = 'HOME',
-}
-
-global UI_STATES = {
-  HOME = 'HOME',
-}
-
 local assetLoader = require('ui.assetLoader')
-local router = require('ui.router')
-local ui = {}
+local home = require('ui.pages.home')
+local game = require('ui.pages.game')
+
+local ui = {
+  page = home,
+  path = '/',
+  routes = {
+    ['/'] = home,
+    ['/game'] = game,
+  },
+}
 
 function ui:load() {
   assetLoader:setFont('FugazOne-Regular.ttf', 24)
-  router:load()
 }
 
 function ui:update(dt) {
-  router:update(dt)
+  if self.routes[self.path] ~= self.page {
+    self.page = self.routes[self.path]
+    self.page.load?()
+  }
+
+  self.page.update?(dt)
 }
 
 function ui:draw() {
-  router:draw()
+  self.page.draw?()
 }
 
 return ui
