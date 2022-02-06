@@ -4,41 +4,38 @@
 return (...Parents) -> {
   local component = {}
   local componentMT = {}
-  local instanceMT = {}
+  local instanceMT = { __index = component }
 
   componentMT.__newindex = (_, key, value) -> {
     if key:match('^__') {
       instanceMT[key] = value
+    } else {
+      rawset(component, key, value)
     }
   }
 
   -- Check #Parents to optimize most common use cases
   if #Parents == 0 {
-    componentMT.__call = (t, instance = {}) -> {
+    componentMT.__call = (_, instance = {}) -> {
       component.init?(instance)
       setmetatable(instance, instanceMT)
       return instance
     }
   } elseif #Parents == 1 {
     local [ Parent ] = Parents
-    instanceMT.__index = (t, key) -> Parent[key]
-    componentMT.__call = (t, instance = {}) -> {
-        Parent(instance)
+    componentMT.__index = Parent
+    componentMT.__call = (_, instance = {}) -> {
+        Parent.init?(instance)
         component.init?(instance)
         setmetatable(instance, instanceMT)
         return instance
     }
   } else {
-    instanceMT.__index =  (t, key) -> {
+    componentMT.__index =  (_, key) -> {
       for i, Parent in pairs(Parents) {
         if Parent[key] ~= nil {
           return Parent[key]
         }
-      }
-    }
-    componentMT.__call = (t, instance = {}) -> {
-      for i, Parent in pairs(Parents) {
-        Parent(instance)
       }
 
       component.init?(instance)

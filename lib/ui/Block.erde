@@ -4,7 +4,6 @@ local Rect = require('lib.shapes.Rect')
 local Block = Component(Rect)
 
 function Block:init() {
-  self.contentRect = Rect()
 }
 
 function Block:update() {
@@ -17,4 +16,4 @@ function Block:draw() {
   }
 }
 
-return Rect
+return Block

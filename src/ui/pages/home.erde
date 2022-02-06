@@ -1,3 +1,5 @@
+local Block = require('lib.ui.Block')
+
 module function draw() {
   local x = 200
   local y = 300
