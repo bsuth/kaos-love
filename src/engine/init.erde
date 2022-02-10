@@ -1,22 +1,23 @@
 local theme = require('theme')
-local orbs = require('engine.orbs')
+local Orb = require('engine.Orb')
 local Vector = require('lib.math.Vector')
 
 local engine = {
-  orb = orbs.Orb:new({
-    p = Vector(),
-    v = Vector({ x = 5, y = 5 }),
+  orb = Orb({
+    velocity = Vector({ x = 5, y = 5 }),
     color = theme.colors.cyan,
   })
 }
 
 function engine:load() {
-  self.orb.p = Vector()
+  self.orb.position = Vector()
 }
 
 function engine:update(dt) {
-  if self.orb.p.x < 0 | love.graphics.getWidth() < self.orb.p.x | love.graphics.getHeight() < self.orb.p.y {
-    self.orb.v = -self.orb.v
+  local { x, y } = self.orb.position
+
+  if x < 0 | love.graphics.getWidth() < x | love.graphics.getHeight() < y {
+    self.orb.velocity = -self.orb.velocity
   }
 
   self.orb:update()

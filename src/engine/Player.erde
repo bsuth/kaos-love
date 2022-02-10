@@ -1,0 +1,24 @@
+local theme = require('theme')
+local utils = require('utils')
+local Component = require('lib.Component')
+local Vector = require('lib.math.Vector')
+
+local Orb = Component()
+
+function Orb:init() {
+  self.position ??= Vector() 
+  self.velocity ??= Vector()
+  self.radius ??= 10
+  self.color ??= theme.colors.white
+}
+
+function Orb:update() {
+  self.position += self.velocity
+}
+
+function Orb:draw() {
+  utils.setHex(self.color)
+  love.graphics.circle('fill', self.position.x, self.position.y, self.radius)
+}
+
+return Orb

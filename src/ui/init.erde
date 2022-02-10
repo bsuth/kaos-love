@@ -5,8 +5,8 @@ local home = require('ui.pages.home')
 local game = require('ui.pages.game')
 
 local ui = {
-  page = home,
-  path = '/',
+  page = game,
+  path = '/game',
   routes = {
     ['/'] = home,
     ['/game'] = game,
